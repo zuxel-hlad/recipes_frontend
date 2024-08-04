@@ -9,7 +9,6 @@ export function Button({ arrow = false, className, children, ...props }: ButtonP
             className={cn('rounded-lg border border-gray-200 px-3 py-2 text-center text-base font-medium transition hover:bg-black hover:text-white', className, {
                 'relative pr-11': arrow,
             })}
-            type="button"
             {...props}
         >
             {children}

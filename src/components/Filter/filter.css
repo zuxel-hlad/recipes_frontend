@@ -1,0 +1,14 @@
+.filter-slider {
+}
+
+.filter-slider .swiper-wrapper {
+    width: max-content;
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.filter-slider .swiper-slide {
+    width: max-content;
+}

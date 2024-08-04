@@ -39,6 +39,7 @@ module.exports = {
         'import/no-default-export': 'off',
         'import/named': 'off',
         'import/no-cycle': 'off',
+        'react/button-has-type': 'off',
         '@typescript-eslint/no-misused-promises': [
             2,
             {
