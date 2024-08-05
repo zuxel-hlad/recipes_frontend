@@ -3,4 +3,5 @@ import { type DetailedHTMLProps, type ReactNode, type ButtonHTMLAttributes } fro
 export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     children: ReactNode
     arrow?: boolean
+    active?: boolean
 }
