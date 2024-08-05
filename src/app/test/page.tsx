@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader, { type IContentLoaderProps } from 'react-content-loader'
 
-export default function Loading(props: IContentLoaderProps): JSX.Element {
+export default function Test(props: IContentLoaderProps): JSX.Element {
     return (
         <ContentLoader backgroundColor="#f3f3f3" foregroundColor="#ecebeb" viewBox="0 0 690 8000" {...props}>
             <rect height="10" rx="2" ry="2" width="160" x="250" y="9" />

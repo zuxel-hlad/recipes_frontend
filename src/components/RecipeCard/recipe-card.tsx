@@ -13,7 +13,7 @@ import { type RecipeCardProps } from './recipe-card.props'
 
 export default function RecipeCard({ recipe, className, ...props }: RecipeCardProps): JSX.Element {
     const { reviewCount, image, tags, name, ingredients, difficulty, cuisine, id } = recipe
-    const [tagQuery, setTagQuery] = useQueryState('tag')
+    const [_, setTagQuery] = useQueryState('tag')
     const router = useRouter()
 
     return (
@@ -41,12 +41,12 @@ export default function RecipeCard({ recipe, className, ...props }: RecipeCardPr
                 <div className="mb-5 flex flex-wrap items-start gap-1">
                     {tags.length > MAX_TAGS ? (
                         <>
-                            {tags.map((tag) => (
+                            {tags.slice(0, MAX_TAGS).map((tag) => (
                                 <Tag className="cursor-pointer" key={tag} tabIndex={0} onClick={() => setTagQuery(tag)}>
                                     {tag}
                                 </Tag>
                             ))}
-                            <Tag className="cursor-pointer">2 more</Tag>
+                            <Tag className="cursor-pointer">+{tags.slice(3).length} more</Tag>
                         </>
                     ) : (
                         tags.map((tag) => (

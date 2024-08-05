@@ -1,6 +1,6 @@
 'use client'
+
 import { useQueryState } from 'nuqs'
-import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 
 import { cn } from '@/lib/utils'
@@ -9,11 +9,13 @@ import { type MyPaginationProps } from './pagination.props'
 
 export function Pagination({ pageCount, initialPage, className, ...props }: MyPaginationProps): JSX.Element {
     const [pageQuery, setPageQuery] = useQueryState('page')
-    const [page, setPage] = useState<number>(1)
 
     const onPageChange = async ({ selected }: { selected: number }): Promise<void> => {
-        await setPageQuery(String(selected + 1))
-        setPage(selected + 1)
+        if (pageQuery) {
+            await setPageQuery(String(selected + 1))
+        } else {
+            await setPageQuery('1')
+        }
     }
 
     const initialQueryPage = pageQuery ? Number(pageQuery) : 1
@@ -30,7 +32,7 @@ export function Pagination({ pageCount, initialPage, className, ...props }: MyPa
             nextLabel={
                 <button
                     className="rounded-lg border border-transparent p-[10px] transition hover:border-gray-200 disabled:bg-slate-200"
-                    disabled={page === pageCount}
+                    disabled={currentInitialPage === pageCount}
                 >{`Next >`}</button>
             }
             pageClassName="p-0"
@@ -38,7 +40,7 @@ export function Pagination({ pageCount, initialPage, className, ...props }: MyPa
             previousLabel={
                 <button
                     className="rounded-lg border border-transparent p-[10px] transition hover:border-gray-200 disabled:bg-slate-200"
-                    disabled={page === 1}
+                    disabled={currentInitialPage === 1}
                 >{`< Previous`}</button>
             }
             onPageChange={onPageChange}

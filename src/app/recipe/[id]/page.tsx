@@ -1,7 +1,7 @@
 import { type Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { getRecipe, getRecipes } from '@/lib/api'
+import { getRecipe } from '@/lib/api'
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
     if ('id' in params) {
