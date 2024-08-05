@@ -17,20 +17,16 @@ export default async function RecipesPage({ searchParams }: { searchParams: Sear
         const tagQuery = 'tag' in searchParams ? searchParams.tag : null
 
         const cuisineTags = await getTags()
-        const recipes = await getRecipes({ page: pageQuery, tag: tagQuery })
+        const { recipes, total } = await getRecipes({ page: pageQuery, tag: tagQuery })
 
-        const totalPages = Math.ceil(recipes.total / PAGE_SIZE)
-
-        // if (!('recipes' in recipes)) {
-        //     return notFound()
-        // }
+        const totalPages = Math.ceil(total / PAGE_SIZE)
 
         return (
             <div className="container py-20">
                 <h1 className="mb-5 text-center text-4xl font-bold">Increasio Recipes</h1>
                 <p className="mb-10 text-center text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, vitae!</p>
                 {cuisineTags.length ? <Filter className="mb-12" tags={cuisineTags} /> : null}
-                <RecipesList className="mb-10" recipes={recipes.recipes} />
+                <RecipesList className="mb-10" recipes={recipes.flatMap((r) => r)} />
                 <Pagination className="mx-auto w-max" pageCount={totalPages} pageRangeDisplayed={3} />
             </div>
         )
