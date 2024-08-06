@@ -13,6 +13,7 @@ import { type RecipeCardProps } from './recipe-card.props'
 
 export default function RecipeCard({ recipe, className, ...props }: RecipeCardProps): JSX.Element {
     const { reviewCount, image, tags, name, ingredients, difficulty, cuisine, id } = recipe
+
     const [_, setTagQuery] = useQueryState('tag')
     const router = useRouter()
 
@@ -26,7 +27,9 @@ export default function RecipeCard({ recipe, className, ...props }: RecipeCardPr
             <div className="mb-5 flex h-56 items-center overflow-hidden rounded-xl">
                 <Image
                     alt={name}
+                    blurDataURL={image}
                     height={0}
+                    placeholder="blur"
                     sizes="100vw"
                     src={image}
                     style={{
