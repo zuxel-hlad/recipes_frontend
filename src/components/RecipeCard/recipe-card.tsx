@@ -11,18 +11,13 @@ import { Difficulty } from '@/types'
 
 import { type RecipeCardProps } from './recipe-card.props'
 
-export default function RecipeCard({ isLoading, recipe, className, ...props }: RecipeCardProps): JSX.Element {
+export default function RecipeCard({ recipe, className, ...props }: RecipeCardProps): JSX.Element {
     const { reviewCount, image, tags, name, ingredients, difficulty, cuisine, id } = recipe
     const [_, setTagQuery] = useQueryState('tag')
     const router = useRouter()
 
     return (
-        <div
-            className={cn('relative flex flex-col rounded-xl border border-gray-50 p-5 shadow-md', className, {
-                'bg-red-700': isLoading,
-            })}
-            {...props}
-        >
+        <div className={cn('relative flex flex-col rounded-xl border border-gray-50 p-5 shadow-md', className)} {...props}>
             {reviewCount >= 80 && (
                 <Tag className="absolute left-0 top-[-12px]" color="red">
                     Most Popular
@@ -30,7 +25,7 @@ export default function RecipeCard({ isLoading, recipe, className, ...props }: R
             )}
             <div className="mb-5 flex h-56 items-center overflow-hidden rounded-xl">
                 <Image
-                    alt="gg"
+                    alt={name}
                     height={0}
                     sizes="100vw"
                     src={image}

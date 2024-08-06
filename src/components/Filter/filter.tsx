@@ -18,7 +18,7 @@ export default function Filter({ tags = [], className, ...props }: FilterProps):
                     All Recipes
                 </Button>
                 {tags.map((tag) => (
-                    <Button active={tagQuery === tag} className={cn('shrink-0')} key={tag} onClick={() => setTagQuery(tag)}>
+                    <Button active={tagQuery === tag} className={cn('shrink-0')} key={tag} onClick={async () => setTagQuery(tag)}>
                         {tag}
                     </Button>
                 ))}

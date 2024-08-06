@@ -8,7 +8,7 @@ export const getRecipes = async ({ page, tag }: { page: number; tag?: string | n
     const params = new URLSearchParams({
         limit: String(PAGE_SIZE),
         skip: String((page - 1) * PAGE_SIZE),
-        delay: '1000',
+        delay: '0',
     })
 
     if (tag) {
