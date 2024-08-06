@@ -24,7 +24,7 @@ export default async function RecipePage({ params }: { params: { id: string } })
             return (
                 <div className="container py-20">
                     <h1 className="mb-8 text-center text-2xl font-bold md:mb-12 md:text-4xl">{recipe.name}</h1>
-                    <ul className="mx-auto max-w-screen-sm">
+                    <ul className="mx-auto mb-12 max-w-screen-sm">
                         {recipe.instructions.map((instruction, idx) => [
                             <li className="whitespace-pre-line" key={instruction}>
                                 <span className="font-bold">{idx + 1}.&nbsp;</span>

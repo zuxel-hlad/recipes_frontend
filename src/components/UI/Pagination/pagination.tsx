@@ -1,6 +1,8 @@
 'use client'
 
+import { usePathname, useRouter } from 'next/navigation'
 import { useQueryState } from 'nuqs'
+import { useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
 
 import { cn } from '@/lib/utils'
@@ -9,6 +11,15 @@ import { type MyPaginationProps } from './pagination.props'
 
 export function Pagination({ pageCount, initialPage, className, ...props }: MyPaginationProps): JSX.Element {
     const [pageQuery, setPageQuery] = useQueryState('page')
+    const [tag] = useQueryState('tag')
+    const router = useRouter()
+    const pathname = usePathname()
+
+    useEffect(() => {
+        process.nextTick(() => {
+            router.push(`${pathname}?${pageQuery ? `page=${pageQuery}` : ''}${tag ? `&tag=${tag}` : ''}`, { scroll: false })
+        })
+    }, [pageQuery, pathname, router, tag])
 
     const onPageChange = async ({ selected }: { selected: number }): Promise<void> => {
         if (pageQuery) {

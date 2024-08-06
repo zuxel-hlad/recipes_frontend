@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/UI'
 
-export default function RecipeCardSkeleton(): JSX.Element {
+export function RecipeCardSkeleton(): JSX.Element {
     return (
         <div className="relative flex flex-col rounded-xl border border-gray-50 p-5 shadow-md">
             <div className="mb-5 flex h-56 items-center overflow-hidden rounded-xl">
