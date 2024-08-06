@@ -27,9 +27,7 @@ export default function RecipeCard({ recipe, className, ...props }: RecipeCardPr
             <div className="mb-5 flex h-56 items-center overflow-hidden rounded-xl">
                 <Image
                     alt={name}
-                    blurDataURL={image}
                     height={0}
-                    placeholder="blur"
                     sizes="100vw"
                     src={image}
                     style={{
