@@ -1,7 +1,6 @@
 'use client'
 
 import { useQueryState } from 'nuqs'
-import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 
 import { cn } from '@/lib/utils'
