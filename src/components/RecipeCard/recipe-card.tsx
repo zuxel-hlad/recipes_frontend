@@ -12,10 +12,16 @@ import { Difficulty } from '@/types'
 import { type RecipeCardProps } from './recipe-card.props'
 
 export default function RecipeCard({ recipe, className, ...props }: RecipeCardProps): JSX.Element {
+    const [, setTagQuery] = useQueryState('tag', { shallow: false })
+    const [, setPageQuery] = useQueryState('page', { shallow: false })
     const { reviewCount, image, tags, name, ingredients, difficulty, cuisine, id } = recipe
 
-    const [_, setTagQuery] = useQueryState('tag')
     const router = useRouter()
+
+    const onTagSelected = async (tag: string): Promise<void> => {
+        await setPageQuery('1')
+        await setTagQuery(tag)
+    }
 
     return (
         <div className={cn('relative flex flex-col rounded-xl border border-gray-50 p-5 shadow-md', className)} {...props}>
@@ -43,15 +49,15 @@ export default function RecipeCard({ recipe, className, ...props }: RecipeCardPr
                     {tags.length > MAX_TAGS ? (
                         <>
                             {tags.slice(0, MAX_TAGS).map((tag) => (
-                                <Tag className="cursor-pointer" key={tag} tabIndex={0} onClick={() => setTagQuery(tag)}>
+                                <Tag className="cursor-pointer" key={tag} tabIndex={0} onClick={() => onTagSelected(tag)}>
                                     {tag}
                                 </Tag>
                             ))}
-                            <Tag className="cursor-pointer">+{tags.slice(3).length} more</Tag>
+                            <Tag>+{tags.slice(3).length} more</Tag>
                         </>
                     ) : (
                         tags.map((tag) => (
-                            <Tag className="cursor-pointer" key={tag} tabIndex={0} onClick={() => setTagQuery(tag)}>
+                            <Tag className="cursor-pointer" key={tag} tabIndex={0} onClick={() => onTagSelected(tag)}>
                                 {tag}
                             </Tag>
                         ))

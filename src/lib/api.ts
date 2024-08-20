@@ -11,13 +11,6 @@ export const getRecipes = async ({ page, tag }: { page: number; tag?: string | n
         delay: '0',
     })
 
-    if (tag) {
-        const data = (await fetch(`${API_URL}/tag/${tag}`).then((res) => res.json())) as ApiResponse<Recipe[]>
-
-        return data
-    }
-
-    const data = (await fetch(`${API_URL}?${params.toString()}`).then((res) => res.json())) as ApiResponse<Recipe[]>
-
+    const data = (await fetch(`${API_URL}${tag ? `/tag/${tag}` : ''}?${params.toString()}`).then((res) => res.json())) as ApiResponse<Recipe[]>
     return data
 }

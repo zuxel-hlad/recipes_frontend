@@ -26,7 +26,7 @@ export default async function RecipesList({ tag, page = 1, className, ...props }
                 ))}
                 {!renderedRecipes.length ? <span className="block text-center">No Recipes Founded.</span> : null}
             </div>
-            <Pagination className="mx-auto w-max" pageCount={totalPages} pageRangeDisplayed={3} />
+            <Pagination className="mx-auto w-max" forcePage={page - 1} initialPage={page - 1} pageCount={totalPages} pageRangeDisplayed={3} />
         </>
     )
 }
