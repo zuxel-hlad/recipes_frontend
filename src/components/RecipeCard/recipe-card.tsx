@@ -82,13 +82,19 @@ export default function RecipeCard({ recipe, className, ...props }: RecipeCardPr
 
             <span className="mb-4 block grow text-xs font-light text-gray-500">Cuisine:&nbsp;{cuisine}</span>
             <Button
-                arrow
-                className="w-full"
+                className="relative w-full pr-9"
                 onClick={() => {
                     router.push(`/recipe/${String(id)}`)
                 }}
             >
-                View Recipe
+                <span className="font-normal">View Recipe</span>
+                <svg className="absolute right-3 top-1/2 size-5 -translate-y-1/2 rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        clipRule="evenodd"
+                        d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z"
+                        fillRule="evenodd"
+                    />
+                </svg>
             </Button>
         </div>
     )

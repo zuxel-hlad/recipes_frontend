@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import RecipeCard from '@/components/RecipeCard/recipe-card'
 import { Pagination } from '@/components/UI'
 import { PAGE_SIZE } from '@/constants'
@@ -12,6 +14,10 @@ export default async function RecipesList({ tag, page = 1, className, ...props }
     const totalPages = Math.ceil(total / PAGE_SIZE)
 
     const renderedRecipes = recipes.flatMap((r) => r)
+
+    if (page > totalPages) {
+        notFound()
+    }
 
     return (
         <>
